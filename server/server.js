@@ -1,6 +1,7 @@
 import "dotenv/config";
 import express from "express";
 import cors from "cors";
+import bodyParser from "body-parser"; 
 import connectDB from "./configs/mongodb.js";
 import userRouter from "./routes/userRoutes.js";
 
@@ -8,6 +9,9 @@ import userRouter from "./routes/userRoutes.js";
 const PORT = process.env.PORT || 4000;
 const app = express();
 await connectDB()
+
+// Use raw parser only for webhooks
+app.use("/api/user/webhooks", bodyParser.raw({ type: "application/json" }));
 
 // Intialize Middlewares
 app.use(express.json())
