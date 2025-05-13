@@ -17,6 +17,6 @@ app.use(cors())
 app.get("/", (req, res) => {
   res.send("API Working");
 });
-app.use("/api/user" , userRouter)
+app.use("/api/user/webhooks" , userRouter)
 
 app.listen(PORT, () => console.log("Server Running on port " + PORT));
